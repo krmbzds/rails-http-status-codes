@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="darkreader-lock">
+    <title>Rails HTTP Status Codes Reference</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛟</text></svg>"
+    />
+    <link rel="stylesheet" href="assets/stylesheets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button
+      id="theme-toggle"
+      class="theme-toggle-float"
+      aria-label="Toggle theme"
+    >
+      <svg
+        id="theme-icon"
+        class="theme-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </button>
+
+    <header class="header">
+      <div class="container">
+        <h1 class="title">Rails HTTP Status Codes</h1>
+        <p class="subtitle">
+          Complete reference for HTTP status codes used in Rails (from Rack)
+        </p>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <div class="controls">
+          <div class="search-container">
+            <input
+              type="text"
+              id="search"
+              placeholder="Search status codes..."
+              class="search-input"
+            />
+          </div>
+          <div class="category-toggles">
+            <div class="category-dropdown" id="category-dropdown">
+              <button class="dropdown-toggle" id="dropdown-toggle">
+                <span id="dropdown-text">Select Categories</span>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="6,9 12,15 18,9"></polyline>
+                </svg>
+              </button>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <label class="dropdown-item">
+                  <input
+                    type="checkbox"
+                    value="Informational"
+                    data-category="Informational"
+                  />
+                  <span>1XX - Informational</span>
+                </label>
+                <label class="dropdown-item">
+                  <input
+                    type="checkbox"
+                    value="Success"
+                    data-category="Success"
+                  />
+                  <span>2XX - Success</span>
+                </label>
+                <label class="dropdown-item">
+                  <input
+                    type="checkbox"
+                    value="Redirection"
+                    data-category="Redirection"
+                  />
+                  <span>3XX - Redirection</span>
+                </label>
+                <label class="dropdown-item">
+                  <input
+                    type="checkbox"
+                    value="Client Error"
+                    data-category="Client Error"
+                  />
+                  <span>4XX - Client Error</span>
+                </label>
+                <label class="dropdown-item">
+                  <input
+                    type="checkbox"
+                    value="Server Error"
+                    data-category="Server Error"
+                  />
+                  <span>5XX - Server Error</span>
+                </label>
+              </div>
+            </div>
+            <button
+              id="cat-1xx"
+              class="category-btn informational"
+              data-category="Informational"
+              aria-label="Informational (1xx)"
+            >
+              1XX
+            </button>
+            <button
+              id="cat-2xx"
+              class="category-btn success"
+              data-category="Success"
+              aria-label="Success (2xx)"
+            >
+              2XX
+            </button>
+            <button
+              id="cat-3xx"
+              class="category-btn redirection"
+              data-category="Redirection"
+              aria-label="Redirection (3xx)"
+            >
+              3XX
+            </button>
+            <button
+              id="cat-4xx"
+              class="category-btn client-error"
+              data-category="Client Error"
+              aria-label="Client Error (4xx)"
+            >
+              4XX
+            </button>
+            <button
+              id="cat-5xx"
+              class="category-btn server-error"
+              data-category="Server Error"
+              aria-label="Server Error (5xx)"
+            >
+              5XX
+            </button>
+          </div>
+          <div class="view-controls">
+            <button
+              id="view-cards"
+              class="view-btn active"
+              data-view="cards"
+              aria-label="Card view"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </button>
+            <button
+              id="view-list"
+              class="view-btn"
+              data-view="list"
+              aria-label="List view"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </button>
+            <button
+              id="view-categories"
+              class="view-btn"
+              data-view="categories"
+              aria-label="Category view"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="loading" class="loading">Loading status codes...</div>
+        <div id="error" class="error" style="display: none"></div>
+
+        <div
+          id="status-codes-container"
+          class="status-codes-container"
+          style="display: none"
+        >
+          <div id="status-codes" class="status-codes-grid"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          Data sourced from
+          <a href="https://github.com/rack/rack" target="_blank" rel="noopener"
+            >Rack</a
+          >
+          • MDN documentation links provided for reference • Last updated:
+          <a href="reference/status_codes.json" target="_blank" rel="noopener"
+            ><span id="footer-updated"></span
+          ></a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/javascripts/script.js?v=3"></script>
+  </body>
+</html>

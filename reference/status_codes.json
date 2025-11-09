@@ -1,0 +1,426 @@
+{
+  "generated_at": "2025-11-09T15:32:37Z",
+  "source": "https://raw.githubusercontent.com/rack/rack/main/lib/rack/utils.rb",
+  "status_codes": [
+    {
+      "code": 100,
+      "message": "Continue",
+      "symbol": "continue",
+      "category": "Informational",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/100"
+    },
+    {
+      "code": 101,
+      "message": "Switching Protocols",
+      "symbol": "switching_protocols",
+      "category": "Informational",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/101"
+    },
+    {
+      "code": 102,
+      "message": "Processing",
+      "symbol": "processing",
+      "category": "Informational",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/102"
+    },
+    {
+      "code": 103,
+      "message": "Early Hints",
+      "symbol": "early_hints",
+      "category": "Informational",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/103"
+    },
+    {
+      "code": 200,
+      "message": "OK",
+      "symbol": "ok",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200"
+    },
+    {
+      "code": 201,
+      "message": "Created",
+      "symbol": "created",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/201"
+    },
+    {
+      "code": 202,
+      "message": "Accepted",
+      "symbol": "accepted",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/202"
+    },
+    {
+      "code": 203,
+      "message": "Non-Authoritative Information",
+      "symbol": "non_authoritative_information",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/203"
+    },
+    {
+      "code": 204,
+      "message": "No Content",
+      "symbol": "no_content",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/204"
+    },
+    {
+      "code": 205,
+      "message": "Reset Content",
+      "symbol": "reset_content",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/205"
+    },
+    {
+      "code": 206,
+      "message": "Partial Content",
+      "symbol": "partial_content",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/206"
+    },
+    {
+      "code": 207,
+      "message": "Multi-Status",
+      "symbol": "multi_status",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/207"
+    },
+    {
+      "code": 208,
+      "message": "Already Reported",
+      "symbol": "already_reported",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/208"
+    },
+    {
+      "code": 226,
+      "message": "IM Used",
+      "symbol": "im_used",
+      "category": "Success",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/226"
+    },
+    {
+      "code": 300,
+      "message": "Multiple Choices",
+      "symbol": "multiple_choices",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/300"
+    },
+    {
+      "code": 301,
+      "message": "Moved Permanently",
+      "symbol": "moved_permanently",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/301"
+    },
+    {
+      "code": 302,
+      "message": "Found",
+      "symbol": "found",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/302"
+    },
+    {
+      "code": 303,
+      "message": "See Other",
+      "symbol": "see_other",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/303"
+    },
+    {
+      "code": 304,
+      "message": "Not Modified",
+      "symbol": "not_modified",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/304"
+    },
+    {
+      "code": 305,
+      "message": "Use Proxy",
+      "symbol": "use_proxy",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/305"
+    },
+    {
+      "code": 307,
+      "message": "Temporary Redirect",
+      "symbol": "temporary_redirect",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/307"
+    },
+    {
+      "code": 308,
+      "message": "Permanent Redirect",
+      "symbol": "permanent_redirect",
+      "category": "Redirection",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/308"
+    },
+    {
+      "code": 400,
+      "message": "Bad Request",
+      "symbol": "bad_request",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400"
+    },
+    {
+      "code": 401,
+      "message": "Unauthorized",
+      "symbol": "unauthorized",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401"
+    },
+    {
+      "code": 402,
+      "message": "Payment Required",
+      "symbol": "payment_required",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/402"
+    },
+    {
+      "code": 403,
+      "message": "Forbidden",
+      "symbol": "forbidden",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/403"
+    },
+    {
+      "code": 404,
+      "message": "Not Found",
+      "symbol": "not_found",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404"
+    },
+    {
+      "code": 405,
+      "message": "Method Not Allowed",
+      "symbol": "method_not_allowed",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/405"
+    },
+    {
+      "code": 406,
+      "message": "Not Acceptable",
+      "symbol": "not_acceptable",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/406"
+    },
+    {
+      "code": 407,
+      "message": "Proxy Authentication Required",
+      "symbol": "proxy_authentication_required",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/407"
+    },
+    {
+      "code": 408,
+      "message": "Request Timeout",
+      "symbol": "request_timeout",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/408"
+    },
+    {
+      "code": 409,
+      "message": "Conflict",
+      "symbol": "conflict",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/409"
+    },
+    {
+      "code": 410,
+      "message": "Gone",
+      "symbol": "gone",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/410"
+    },
+    {
+      "code": 411,
+      "message": "Length Required",
+      "symbol": "length_required",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/411"
+    },
+    {
+      "code": 412,
+      "message": "Precondition Failed",
+      "symbol": "precondition_failed",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/412"
+    },
+    {
+      "code": 413,
+      "message": "Content Too Large",
+      "symbol": "content_too_large",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/413"
+    },
+    {
+      "code": 414,
+      "message": "URI Too Long",
+      "symbol": "uri_too_long",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/414"
+    },
+    {
+      "code": 415,
+      "message": "Unsupported Media Type",
+      "symbol": "unsupported_media_type",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/415"
+    },
+    {
+      "code": 416,
+      "message": "Range Not Satisfiable",
+      "symbol": "range_not_satisfiable",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/416"
+    },
+    {
+      "code": 417,
+      "message": "Expectation Failed",
+      "symbol": "expectation_failed",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/417"
+    },
+    {
+      "code": 421,
+      "message": "Misdirected Request",
+      "symbol": "misdirected_request",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/421"
+    },
+    {
+      "code": 422,
+      "message": "Unprocessable Content",
+      "symbol": "unprocessable_content",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422"
+    },
+    {
+      "code": 423,
+      "message": "Locked",
+      "symbol": "locked",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/423"
+    },
+    {
+      "code": 424,
+      "message": "Failed Dependency",
+      "symbol": "failed_dependency",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/424"
+    },
+    {
+      "code": 425,
+      "message": "Too Early",
+      "symbol": "too_early",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/425"
+    },
+    {
+      "code": 426,
+      "message": "Upgrade Required",
+      "symbol": "upgrade_required",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/426"
+    },
+    {
+      "code": 428,
+      "message": "Precondition Required",
+      "symbol": "precondition_required",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/428"
+    },
+    {
+      "code": 429,
+      "message": "Too Many Requests",
+      "symbol": "too_many_requests",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429"
+    },
+    {
+      "code": 431,
+      "message": "Request Header Fields Too Large",
+      "symbol": "request_header_fields_too_large",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/431"
+    },
+    {
+      "code": 451,
+      "message": "Unavailable For Legal Reasons",
+      "symbol": "unavailable_for_legal_reasons",
+      "category": "Client Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/451"
+    },
+    {
+      "code": 500,
+      "message": "Internal Server Error",
+      "symbol": "internal_server_error",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/500"
+    },
+    {
+      "code": 501,
+      "message": "Not Implemented",
+      "symbol": "not_implemented",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/501"
+    },
+    {
+      "code": 502,
+      "message": "Bad Gateway",
+      "symbol": "bad_gateway",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/502"
+    },
+    {
+      "code": 503,
+      "message": "Service Unavailable",
+      "symbol": "service_unavailable",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/503"
+    },
+    {
+      "code": 504,
+      "message": "Gateway Timeout",
+      "symbol": "gateway_timeout",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/504"
+    },
+    {
+      "code": 505,
+      "message": "HTTP Version Not Supported",
+      "symbol": "http_version_not_supported",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/505"
+    },
+    {
+      "code": 506,
+      "message": "Variant Also Negotiates",
+      "symbol": "variant_also_negotiates",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/506"
+    },
+    {
+      "code": 507,
+      "message": "Insufficient Storage",
+      "symbol": "insufficient_storage",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/507"
+    },
+    {
+      "code": 508,
+      "message": "Loop Detected",
+      "symbol": "loop_detected",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/508"
+    },
+    {
+      "code": 511,
+      "message": "Network Authentication Required",
+      "symbol": "network_authentication_required",
+      "category": "Server Error",
+      "mdn_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/511"
+    }
+  ]
+}
