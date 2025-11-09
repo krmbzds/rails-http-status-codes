@@ -1,0 +1,139 @@
+#!/usr/bin/env ruby
+
+require "net/http"
+require "uri"
+require "json"
+
+class StatusCodeFetcher
+  RACK_UTILS_URL = "https://raw.githubusercontent.com/rack/rack/main/lib/rack/utils.rb"
+  RESOURCES_DIR = File.join(__dir__, "..", "resources")
+  REFERENCE_DIR = File.join(__dir__, "..", "reference")
+  OUTPUT_FILE = File.join(REFERENCE_DIR, "status_codes.json")
+
+  def initialize
+    ensure_directories
+  end
+
+  def run
+    puts "Fetching rack/utils.rb from GitHub..."
+    content = fetch_rack_utils
+
+    puts "Parsing HTTP status codes..."
+    status_codes = parse_status_codes(content)
+
+    puts "Generating reference data..."
+    generate_reference_file(status_codes)
+
+    puts "Done! Generated #{OUTPUT_FILE}"
+  end
+
+  private
+
+  def ensure_directories
+    Dir.mkdir(RESOURCES_DIR) unless Dir.exist?(RESOURCES_DIR)
+    Dir.mkdir(REFERENCE_DIR) unless Dir.exist?(REFERENCE_DIR)
+  end
+
+  def fetch_rack_utils
+    uri = URI.parse(RACK_UTILS_URL)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE if defined?(OpenSSL::SSL::VERIFY_NONE)
+
+    response = http.get(uri.path)
+    unless response.is_a?(Net::HTTPSuccess)
+      raise "Failed to fetch rack/utils.rb: #{response.code} #{response.message}"
+    end
+
+    # Save to resources folder for reference
+    resources_file = File.join(RESOURCES_DIR, "utils.rb")
+    File.write(resources_file, response.body)
+
+    response.body
+  end
+
+  def parse_status_codes(content)
+    # Parse HTTP_STATUS_CODES hash
+    http_status_codes_match = content.match(/HTTP_STATUS_CODES\s*=\s*\{(.*?)\}/m)
+    symbol_to_status_code_match = content.match(/SYMBOL_TO_STATUS_CODE\s*=\s*Hash\[\*HTTP_STATUS_CODES\.map \{ \|code, message\|(.*?)\}\.flatten\]/m)
+
+    status_codes = {}
+
+    if http_status_codes_match
+      hash_content = http_status_codes_match[1]
+      parse_hash_content(hash_content, status_codes)
+    end
+
+    if symbol_to_status_code_match
+      # SYMBOL_TO_STATUS_CODE is generated dynamically, so we need to recreate the logic
+      generate_symbol_mappings(status_codes)
+    end
+
+    status_codes
+  end
+
+  def parse_hash_content(content, status_codes)
+    # Parse lines like: 100 => 'Continue',
+    content.scan(/(\d+)\s*=>\s*'([^']+)'/) do |code, message|
+      status_codes[code] = {
+        code: code.to_i,
+        message: message,
+        symbol: nil
+      }
+    end
+  end
+
+  def generate_symbol_mappings(status_codes)
+    # Recreate the SYMBOL_TO_STATUS_CODE logic from the source
+    status_codes.each do |code_str, code_info|
+      message = code_info[:message]
+      symbol = message.downcase.gsub(/\s|-/, "_").to_sym
+      code_info[:symbol] = symbol
+    end
+  end
+
+  def generate_reference_file(status_codes)
+    # Convert to sorted array and add additional info
+    sorted_codes = status_codes.values.sort_by { |code| code[:code] }
+
+    # Add category information based on status code ranges
+    sorted_codes.each do |code_info|
+      code = code_info[:code]
+      code_info[:category] = determine_category(code)
+      code_info[:mdn_url] = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/#{code}"
+    end
+
+    # Create the final data structure
+    reference_data = {
+      generated_at: Time.now.utc.iso8601,
+      source: RACK_UTILS_URL,
+      status_codes: sorted_codes
+    }
+
+    File.write(OUTPUT_FILE, JSON.pretty_generate(reference_data))
+  end
+
+  def determine_category(code)
+    case code
+    when 100..199
+      "Informational"
+    when 200..299
+      "Success"
+    when 300..399
+      "Redirection"
+    when 400..499
+      "Client Error"
+    when 500..599
+      "Server Error"
+    else
+      "Unknown"
+    end
+  end
+end
+
+# Run the fetcher
+if __FILE__ == $0
+  fetcher = StatusCodeFetcher.new
+  fetcher.run
+end
+
