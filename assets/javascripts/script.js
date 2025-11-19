@@ -445,26 +445,24 @@ class HttpStatusCodesApp {
   }
 
   toggleTheme() {
-    const currentTheme = document.body.classList.contains("light-theme")
-      ? "light"
-      : "dark";
+    const currentTheme =
+      document.documentElement.getAttribute("data-theme") || "dark";
     const newTheme = currentTheme === "dark" ? "light" : "dark";
     this.setTheme(newTheme);
   }
 
   setTheme(theme) {
-    const body = document.body;
     const themeIcon = document.getElementById("theme-icon");
 
+    document.documentElement.setAttribute("data-theme", theme);
+
     if (theme === "light") {
-      body.classList.add("light-theme");
       themeIcon.innerHTML = `
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             `;
       themeIcon.classList.remove("sun");
       themeIcon.classList.add("moon");
     } else {
-      body.classList.remove("light-theme");
       themeIcon.innerHTML = `
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>

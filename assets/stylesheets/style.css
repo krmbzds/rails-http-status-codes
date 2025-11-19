@@ -26,6 +26,7 @@ body {
 
 /* Dark theme (default) */
 :root {
+  /* Dark theme (default) */
   --bg: #1a1a1f;
   --fg: #f8f8f2;
   --comment: #7970a9;
@@ -48,10 +49,23 @@ body {
   --bright-magenta: #ff99cc;
   --bright-cyan: #99ffee;
   --bright-white: #ffffff;
+
+  /* Standardized aliases for this project */
+  --primary-color: var(--purple);
+  --secondary-color: var(--comment);
+  --tertiary-color: var(--selection);
+  --text-color: var(--fg);
+  --bg-color: var(--bg);
+  --card-bg: var(--menu);
+  --border-color: var(--visual);
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --border-radius: 8px;
+  --selection-color: var(--selection);
+  --code-bg: #1a1a24;
 }
 
-/* Light theme */
-body.light-theme {
+[data-theme="light"] {
+  /* Light theme */
   --bg: #f5f5f5;
   --fg: #1f1f1f;
   --comment: #635d97;
@@ -74,6 +88,18 @@ body.light-theme {
   --bright-magenta: #644ac9;
   --bright-cyan: #036a96;
   --bright-white: #f5f5f5;
+
+  /* Standardized aliases for this project */
+  --primary-color: var(--purple);
+  --secondary-color: var(--comment);
+  --tertiary-color: var(--visual);
+  --text-color: var(--fg);
+  --bg-color: var(--bg);
+  --card-bg: var(--menu);
+  --border-color: var(--visual);
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --selection-color: var(--selection);
+  --code-bg: #e8e8e8;
 }
 
 body {
